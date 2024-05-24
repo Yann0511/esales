@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('montan');
             $table->string('status');
+            $table->bigInteger('commandeId');
+
             $table->timestamps();
         });
     }

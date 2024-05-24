@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
             $table->string('contenu');
+            $table->bigInteger('produitId');
+            $table->bigInteger('userId');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

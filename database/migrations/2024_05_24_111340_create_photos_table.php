@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('chemin');
+            $table->bigInteger('CommentaireId');
+            $table->bigInteger('ProduitId');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

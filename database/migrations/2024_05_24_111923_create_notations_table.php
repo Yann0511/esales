@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('notations', function (Blueprint $table) {
             $table->id();
             $table->integer('note');
+            $table->bigInteger('produitId');
+            $table->bigInteger('userId');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
