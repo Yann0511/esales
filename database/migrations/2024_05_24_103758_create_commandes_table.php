@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('numero');
             $table->float('montant');
             $table->integer('statut');
-            $table->bigInteger('auteurId');
-            $table->bigInteger('livreurId');
+            $table->bigInteger('auteurId')->unsigned();
+            $table->bigInteger('livreurId')->nullable()->unsigned();
             $table->timestamps();
         });
     }

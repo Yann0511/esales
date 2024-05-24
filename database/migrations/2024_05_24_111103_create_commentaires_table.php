@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
             $table->string('contenu');
-            $table->bigInteger('produitId');
-            $table->bigInteger('userId');
+            $table->bigInteger('produitId')->unsigned();
+            $table->bigInteger('userId')->unsigned();
             $table->timestamps();
         });
     }

@@ -17,6 +17,6 @@ class LogActivity extends Model
      * @var array
      */
     protected $fillable = [
-        'log_name', 'description', 'properties', 'subject_id', 'subject_type', 'causer_id', 'causer_type', 'ipAdresse', 'userAgent'
+        'log_name', 'description', 'properties', 'subject_id', 'subject_type', 'causer_id', 'causer_type', 'ipAdresse', 'userAgent', 'userId'
     ];
 }

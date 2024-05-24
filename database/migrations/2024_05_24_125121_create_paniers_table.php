@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('userId')->unsigned();
             $table->timestamps();
         });
     }

@@ -10,15 +10,22 @@ class Photo extends Model
     use HasFactory;
     protected $fillable = [
         'chemin',
-        'CommentaireId',
-        'ProduitId',
+        'photoable_type',
+        'photoable_id',
     ];
     public function commentaire()
     {
-        return $this->belongsTo(Commentaire::class, 'CommentaireId');
+        return $this->belongsTo(Commentaire::class, 'commentaireId');
     }
     public function produit()
     {
-        return $this->belongsTo(Produit::class, 'ProduitId');
+        return $this->belongsTo(Produit::class, 'produitId');
     }
+
+    public function photoable()
+    {
+        return $this->morphTo('photoable');
+    }
+
+    
 }

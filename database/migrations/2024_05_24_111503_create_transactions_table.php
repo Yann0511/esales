@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('montan');
-            $table->string('status');
-            $table->bigInteger('commandeId');
-
+            $table->integer('montant');
+            $table->string('statut');
+            $table->bigInteger('commandeId')->unsigned();
             $table->timestamps();
         });
     }

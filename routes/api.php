@@ -29,7 +29,7 @@ use \OpenApi\Annotations as OA;
 
 Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], function () {
 
-    Route::post('/login', 'AuthController@login')->name('auth.login');
+    /*Route::post('/login', 'AuthController@login')->name('auth.login');
 
     Route::group(['middleware' => ['auth:api']], function () {
 
@@ -50,6 +50,6 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         });
 
-    });
+    });*/
 
 });

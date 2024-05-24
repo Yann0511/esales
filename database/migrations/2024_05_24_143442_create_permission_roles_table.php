@@ -11,21 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notations', function (Blueprint $table) {
+        Schema::create('permission_roles', function (Blueprint $table) {
             $table->id();
-            $table->integer('note');
-            $table->bigInteger('produitId')->unsigned();
-            $table->bigInteger('userId')->unsigned();
+            $table->bigInteger('roleId')->unsigned();
+            $table->bigInteger('permissionId')->unsigned();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('notations');
+        Schema::dropIfExists('permission_roles');
     }
 };

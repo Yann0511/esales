@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Categorie extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'montant',
-        'statut',
-        'commandeId',
+        'nom',
+        'icone',
+
     ];
-    public function commande()
+    public function produits()
     {
-        return $this->belongsTo(Commande::class, 'commandeId');
+        return $this->hasMany(Produit::class);
     }
 }

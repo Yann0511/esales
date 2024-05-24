@@ -13,6 +13,31 @@ class Produit extends Model
         'nom',
         'description',
         'prix',
-        'qte'
+        'qte',
+        'categorieId',
+
     ];
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class, 'categorieId');
+    }
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
+
+    public function note()
+    {
+        $somme =  $this->belongsTo(Notation::class, 'produitId')->sum('note');
+        $count =  $this->belongsTo(Notation::class, 'produitId')->count();
+
+        return $somme/$count ;
+    }
+
+    public function photos()
+    {
+        return $this->morphMany(Photo::class,'photoable');
+    }
+
 }

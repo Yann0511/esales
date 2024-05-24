@@ -11,21 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notations', function (Blueprint $table) {
+        Schema::create('panier_produits', function (Blueprint $table) {
             $table->id();
-            $table->integer('note');
+            $table->bigInteger('panierId')->unsigned();
             $table->bigInteger('produitId')->unsigned();
-            $table->bigInteger('userId')->unsigned();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('notations');
+        Schema::dropIfExists('panier_produits');
     }
 };

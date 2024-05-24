@@ -17,9 +17,9 @@ class Commentaire extends Model
     {
         return $this->belongsTo(Produit::class,  'produitId');
     }
-    public function photo()
+    public function photos()
     {
-        return $this->hasMany(Photo::class);
+        return $this->morphMany(Photo::class,'photoable');
     }
     public function user()
     {

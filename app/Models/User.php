@@ -19,7 +19,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
         'nom',
         'prenoms',
         'telephone',
@@ -59,5 +58,25 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class, 'roleId');
+    }
+
+    public function commamdes()
+    {
+        return $this->hasMany(Commande::class, 'auteurId');
+    }
+
+    public function commamdesALivrer()
+    {
+        return $this->hasMany(Commande::class, 'livreurId');
+    }
+
+    public function panier()
+    {
+        return $this->hasOne(Panier::class);
+    }
+
+    public function historiques()
+    {
+        return $this->hasMany(LogActivity::class);
     }
 }
