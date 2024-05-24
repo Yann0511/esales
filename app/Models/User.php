@@ -3,14 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Traits\Authorization\AuthorizationUserTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-
+use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, AuthorizationUserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +19,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
+        'nom',
+        'prenoms',
+        'telephone',
+        'adresse',
+        'photo',
+        'roleId',
+        'remember_token',
+        'emailVerifiedAt',
         'email',
         'password',
+        'statut',
     ];
 
     /**
@@ -39,7 +49,15 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'emailVerifiedAt' => 'datetime',
     ];
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'userId');
+    }
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'roleId');
+    }
 }

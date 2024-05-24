@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\LogActivity;
+use App\Models\User;
+use App\Observers\LogActivityObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,13 +29,14 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        LogActivity::observe(LogActivityObserver::class);
+        User::observe(UserObserver::class);
     }
 
     /**
      * Determine if events and listeners should be automatically discovered.
      */
-    public function shouldDiscoverEvents(): bool
+    public function shouldDiscoverEvents() :bool
     {
         return false;
     }
