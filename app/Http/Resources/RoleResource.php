@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\role;
+namespace App\Http\Resources;
 
 use App\Http\Resources\PermissionResource;
 use Carbon\Carbon;

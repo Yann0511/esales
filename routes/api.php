@@ -23,13 +23,13 @@ use \OpenApi\Annotations as OA;
 |
 */
 
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});*/
+});
 
 Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], function () {
 
-    /*Route::post('/login', 'AuthController@login')->name('auth.login');
+    Route::post('/login', 'AuthController@login')->name('auth.login');
 
     Route::group(['middleware' => ['auth:api']], function () {
 
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('roles', 'RoleController')->names('roles');
 
-        Route::apiResource('users', 'UserController')->names('users');
+        /*Route::apiResource('users', 'UserController')->names('users');
 
         Route::apiResource('permissions', 'PermissionController', ['only' => ['index']])->names('permissions');
 
@@ -48,8 +48,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
             Route::get('/{id}/statut', 'UserController@statut')->middleware('permission:desactiver.un.user');
 
-        });
+        });*/
 
-    });*/
+    });
 
 });

@@ -41,10 +41,10 @@ class AuthController extends Controller
             $utilisateur = User::where('email', $identifiants['email'])->first();
 
             // Si la variable utilisateur est null alors une exception sera déclenché notifiant que l'email renseigner ne correspond à aucun enregistrement de la table users
-            if (!$utilisateur) throw new Exception("Nom d'utilisateur ou mot de passe incorrect.", 401);
+            if (!$utilisateur) throw new Exception("L'email de l'utilisateur ou mot de passe incorrect.", 401);
 
             // Vérifier si le mot de passe renseigner correspond au mot de passe du compte uitisateur trouver
-            if (!Hash::check($identifiants['password'], $utilisateur->password)) throw new Exception("Nom d'utilisateur ou mot de passe incorrect.", 401);
+            if (!Hash::check($identifiants['password'], $utilisateur->password)) throw new Exception("L'email de l'utilisateur ou mot de passe incorrect.", 401);
 
             // Vérifier si le compte de l'utilisateur est activé ou pas
             if (!$utilisateur->statut) {
@@ -52,7 +52,7 @@ class AuthController extends Controller
             }
 
             // Connexion...
-            if (!Auth::attempt(['username' => $utilisateur["email"], 'password' => $identifiants['password']]))  throw new Exception("Erreur de connexion", 500);
+            if (!Auth::attempt(['email' => $utilisateur["email"], 'password' => $identifiants['password']]))  throw new Exception("Erreur de connexion", 500);
 
             $user = Auth::user();
 
@@ -62,7 +62,7 @@ class AuthController extends Controller
 
             $message = Str::ucfirst($acteur) . " s'est connecté(e).";
 
-            LogActivity::addToLog("Connexion", $message, get_class($user), $user->id);
+            //LogActivity::addToLog("Connexion", $message, get_class($user), $user->id);
 
             // Retourner le token
             return response()->json(['statut' => 'success', 'message' => "Authentification réussi", 'data' => new LoginResource($data), 'statutCode' => Response::HTTP_OK], Response::HTTP_OK);
@@ -162,6 +162,7 @@ class AuthController extends Controller
     {
         try {
 
+
             // Si la suppression du token ne se passe pas correctement, une exception sera déclenchée
             if (!$request->user()->tokens()->delete()) throw new Exception("Erreur pendant la déconnexion", 500);
 
@@ -177,5 +178,4 @@ class AuthController extends Controller
             return response()->json(['statut' => 'error', 'message' => $th->getMessage(), 'errors' => []], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
 }

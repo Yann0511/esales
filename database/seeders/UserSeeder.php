@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'prenoms' => 'Yann',
             'email' => 'yannkellyolou.eu@gmail.com',
             'password' =>  'password',
-            'dateDeNaissance' => '2001-10-05',
             'telephone' => '0748278615',
             'adresse' => '22 Square Louis Armand, 35000',
             'photo'=> 'defauld.png',

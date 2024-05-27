@@ -3,7 +3,7 @@
 namespace App\Http\Resources\user\auth;
 
 use App\Http\Resources\PaysResource;
-use App\Http\Resources\role\RoleResource;
+use App\Http\Resources\RoleResource;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,7 +18,7 @@ class AuthResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->hashId,
+            "id" => $this->id,
             "nom" => $this->nom,
             "prenoms" => $this->prenoms,
             "statut" => $this->statut,
