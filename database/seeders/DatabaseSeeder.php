@@ -12,9 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< Updated upstream
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(PermissionRoleSeeder::class);
         $this->call(UserSeeder::class);
+=======
+      /*  $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
+        $this->call(PermissionRoleSeeder::class);
+        $this->call(UserSeeder::class);*/
+        $this->call(CategorieSeeder::class);
+
+>>>>>>> Stashed changes
     }
 }

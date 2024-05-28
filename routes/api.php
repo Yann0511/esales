@@ -40,6 +40,10 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('roles', 'RoleController')->names('roles');
 
+        Route::apiResource('categories', 'CategorieController')->names('categories');
+        Route::get('/categories/{id}', [CategorieController::class, 'show']);
+
+
         /*Route::apiResource('users', 'UserController')->names('users');
 
         Route::apiResource('permissions', 'PermissionController', ['only' => ['index']])->names('permissions');
