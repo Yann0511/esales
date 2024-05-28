@@ -9,10 +9,16 @@ class Role extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nom',
-        'slug',
-    ];
+    protected $fillable = ['nom', 'slug'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($role) {
+            $role->slug = strtolower(str_replace(' ', '.', $role->nom));
+        });
+    }
 
     public function permissions()
     {

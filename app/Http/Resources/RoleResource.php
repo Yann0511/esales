@@ -17,7 +17,7 @@ class RoleResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->hashId,
+            "id" => $this->id,
             "nom" => $this->nom,
             "permissions" => PermissionResource::collection($this->permissions),
             "created_at" => !$this->updated_at ? null : Carbon::parse($this->created_at)->translatedFormat('d/m/Y à H:i:s'),
