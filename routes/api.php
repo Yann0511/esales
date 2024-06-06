@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\PanierProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \OpenApi\Annotations as OA;
@@ -43,6 +45,14 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('categories', 'CategorieController')->names('categories');
         Route::get('/categories/{id}', [CategorieController::class, 'show']);
+
+        Route::apiResource('commandes', 'CommandeController')->names('commandes');
+
+        Route::apiResource('notations', 'NotationController')->names('notations');
+
+        Route::apiResource('paniers', PanierController::class);
+
+        Route::apiResource('panier-produits', PanierProduitController::class)->only(['index', 'store', 'destroy']);
 
 
         /*Route::apiResource('users', 'UserController')->names('users');

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PanierProduit extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'panierId', 
+        'produitId',
+    ];
+    
 }
