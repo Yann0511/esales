@@ -18,6 +18,7 @@ class PanierProduitResource extends JsonResource
             'id' => $this->id,
             'panierId' => $this->panierId,
             'produitId' => $this->produitId,
+            //  'produit' => new ProduitResource($this->whenLoaded('produit')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

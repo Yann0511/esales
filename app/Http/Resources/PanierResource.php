@@ -17,7 +17,7 @@ class PanierResource extends JsonResource
         return [
             'id' => $this->id,
             'userId' => $this->userId,
-            //'articles' => PanierProduitResource::collection($this->produits),
+            'articles' => PanierProduitResource::collection($this->whenLoaded('produits')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
