@@ -10,8 +10,13 @@ class PanierProduit extends Model
     use HasFactory;
 
     protected $fillable = [
-        'panierId', 
+        'panierId',
         'produitId',
+        'quantite',
     ];
-    
+
+    public function produit()
+    {
+        return $this->belongsTo(Produit::class, 'produitId');
+    }
 }

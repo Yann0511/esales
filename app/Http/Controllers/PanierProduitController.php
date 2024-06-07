@@ -6,6 +6,7 @@ use App\Models\PanierProduit;
 use App\Http\Requests\StorePanierProduitRequest;
 use App\Http\Requests\UpdatePanierProduitRequest;
 use App\Http\Resources\PanierProduitResource;
+use App\Models\Panier;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Http\Response;
@@ -45,7 +46,20 @@ class PanierProduitController extends Controller
         try {
             $validated = $request->validated();
 
-            $panierProduit = PanierProduit::create($validated);
+            // Vérifier si le produit existe déjà dans le panier
+            $panierProduit = PanierProduit::where('panierId', $validated['panierId'])
+                ->where('produitId', $validated['produitId'])
+                ->first();
+
+            if ($panierProduit) {
+                // Si le produit existe, incrémenter la quantité
+                $panierProduit->quantite += $validated['quantite'];
+                $panierProduit->save();
+            } else {
+                // Sinon, créer une nouvelle entrée
+                $panierProduit = PanierProduit::create($validated);
+            }
+
             DB::commit();
             return response()->json([
                 'statut' => 'success',
@@ -63,10 +77,42 @@ class PanierProduitController extends Controller
         }
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdatePanierProduitRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $panierProduit = PanierProduit::find($id);
+
+            if (!$panierProduit) {
+                throw new Exception("Le produit dans le panier avec l'ID {$id} est introuvable.", Response::HTTP_NOT_FOUND);
+            }
+
+            $panierProduit->update($request->validated());
+            DB::commit();
+            return response()->json([
+                'statut' => 'success',
+                'message' => "Produit dans le panier mis à jour",
+                'data' => new PanierProduitResource($panierProduit),
+                'statutCode' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => [],
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         DB::beginTransaction();
         try {

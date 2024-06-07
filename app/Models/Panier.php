@@ -14,7 +14,7 @@ class Panier extends Model
 
     public function produits()
     {
-        return $this->belongsToMany(Produit::class, "panier_produits", "panierId", "produitId");
+        return $this->hasMany(PanierProduit::class, "panierId");
     }
 
     public function user()

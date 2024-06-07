@@ -695,8 +695,45 @@
 				{
 					"name": "panier",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDFiYWI0ZWFjNDg3YjlmYjBjMDkxMTc1OThmMmNjYzY0ZjQxMzI1ODNkMmEzYWFjNjFkNDk2MzgwY2MyNjZiZThlZjNiODMzNWU2ZTMwOTUiLCJpYXQiOjE3MTc3NTY0MDQuMTgxNjMyLCJuYmYiOjE3MTc3NTY0MDQuMTgxNjQ2LCJleHAiOjE3NDkyOTI0MDQuMTYzMjc2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.s7k6XL5uR9Qtc9NfatJZKQoww4W7xqazKEaZibvdJM4IFQVSz3Pvamc1CPd_g_Q_8hqnPbGN9qZpFL2ty9rBKMF6pWWUZ2R8suRnW8GuntZnRHQ4EeoDBfgakCQhgtRcmldUlaftL5_qm2L0EsbYI3CfS49q7Vemn_GjIxB4fGN3XYTOp0unBv2X8qbOZq9y6PNSl6hTVRKWGlrJQKxY8PbjgYPjspzZA3gJRRNabxLi0AYAnzAFl8oBUanw0ZlHVT1qa8NXZ4jRousgZY3kPm9Aqx-Dp98fD7imwibnbXSrU4JVARyat2d3lR3fneuxKA6ZPBCOrCp8ZFh-RVsxgcb66Tgm58p1uHvhDzfdt3aUgWVgVwQLGbTof5BwQzGSKLpXTwgdwqOhBlgwpcKMX12ffn9r24CfLShk8xlYHJE6Pots0jc7n5n4uyo1CQ4tE0-AK6RJS0FXU03cqKy7BCmcK7tyJe1VZABwLsmh-_yzOpzQM_l6MQMhjlYhjVKLkNnjBWjMkQdnudTURXoX0rjGs4BocL7z3TFG8miuLnVLGZm2LDMG2WU-sXXG86tZGPBqOU7HFOUaqMSLlox3QMaoWlrZOib6amU_cgRK8QNooPZYuZu31HVV9IrT0hIwJbVIwnlHHbPlCqoyuK9rBx6WagJC8rxbwVPcfmhaNfQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/paniers/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"paniers",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -887,6 +924,71 @@
 								"api",
 								"panier-produits",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "liste panier produit",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "panier produit",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "modifier",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2JiOGNjZmE1NTFmZWFmYjcyNDU5NzAyNjhhODhlMTczODJkYTZmYzk4MGRlYzQwMjFmYmY3YjU1OWZlMWEzNjU1NTEzZTZmYmViNjNjMDMiLCJpYXQiOjE3MTc2ODMwMDAuNzcyODAzLCJuYmYiOjE3MTc2ODMwMDAuNzcyODA4LCJleHAiOjE3NDkyMTkwMDAuNzUzNTE4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.gQupHOYIi-S0mOOnA0JCa-Y5HumqDT80gEqkkxDUWLUZA-9l0pGA8MdisDk4Xn34qC88f31okcFqVqYuyv7KIlcICo5TpBGgStYNZgTBe9wgFoIcYlbGNOGMsvAcTo0_qp9c_Dzo1BXZLgk1yMPjWGihGpQA5FPmBSqJgXkzwWOwmpXuBd9wKVrf9zLnjHF2bLSfxrZltUoCl21107efYX_xy_d6iWyPLgTY0re35SN3FS8u-NRlpro58mzMajiEwq2kN88wUTvc87Z2jXSir4NiXyJkDZcq9P6U1DBZPTaM5SputFZ2crgTYcf2iKsbaGNhjBbDn8Ts3qSMkod-tRZeBnQHo_JMEuhaC2S_GRxtY8XNQ16Bgq3lrDWU6SQtMt2YmAoCvIHAYmV4aVn2-tIlklYO72WWhFl6zRI2g6AGr_HgLqKDu9REyiRESTshGa4Fv_YmJVGm6y8qUvtctt08ISxqUcWiidhBKTv60V-RHO3XmVZMHBWB7WH5hnl3zUOAVN_GZKy80MoeNRyjqQQv7MrfSEWvNDGLgHuxVPZA7FuAgQx8Xy4ukKbkfI6x0Qy6LtT53aBeD8A6B68LTAF9HuyZQZIFGvMWKqgS4o3GFciWlURL7QN7rnAifyFZ53tPOQuPV0EuSUKqn7na5jUQFmFUF_K-Jk0Cq-F8qdo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"panierId\": 1,\r\n    \"produitId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/panier-produits/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"panier-produits",
+								"2"
 							]
 						}
 					},

@@ -16,6 +16,7 @@ class PanierProduitSeeder extends Seeder
         PanierProduit::create([
             'panierId' => 1,
             'produitId' => 1,
+            'quantite' =>1,
 
         ]);
     }

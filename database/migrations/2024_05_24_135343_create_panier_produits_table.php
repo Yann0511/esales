@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('panierId')->unsigned();
             $table->bigInteger('produitId')->unsigned();
+            $table->integer('quantite');
             $table->timestamps();
         });
     }

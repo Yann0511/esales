@@ -52,7 +52,7 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('paniers', PanierController::class);
 
-        Route::apiResource('panier-produits', PanierProduitController::class)->only(['index', 'store', 'destroy']);
+        Route::apiResource('panier-produits', PanierProduitController::class);
 
 
         /*Route::apiResource('users', 'UserController')->names('users');
@@ -64,7 +64,5 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
             Route::get('/{id}/statut', 'UserController@statut')->middleware('permission:desactiver.un.user');
 
         });*/
-
     });
-
 });
