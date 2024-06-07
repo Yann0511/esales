@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(LogActivity::class);
     }
+
+    public function wishLists()
+    {
+        return $this->hasMany(WishList::class, 'userId');
+    }
 }

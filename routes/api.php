@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\PanierProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \OpenApi\Annotations as OA;
@@ -47,6 +49,14 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
 Route::apiResource('commentaires', CommentaireController::class);
 
+        Route::apiResource('commandes', 'CommandeController')->names('commandes');
+
+        Route::apiResource('notations', 'NotationController')->names('notations');
+
+        Route::apiResource('paniers', PanierController::class);
+
+        Route::apiResource('panier-produits', PanierProduitController::class);
+
 
         /*Route::apiResource('users', 'UserController')->names('users');
 
@@ -57,7 +67,5 @@ Route::apiResource('commentaires', CommentaireController::class);
             Route::get('/{id}/statut', 'UserController@statut')->middleware('permission:desactiver.un.user');
 
         });*/
-
     });
-
 });

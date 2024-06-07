@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('panier_produits', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('panierId')->unsigned();
-            $table->bigInteger('produitId')->unsigned();
-            $table->integer('quantite');
+            $table->string('objet');
+            $table->string('nom');
+            $table->string('prenoms');
+            $table->string('email');
+            $table->longText('contenu');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('panier_produits');
+        Schema::dropIfExists('contacts');
     }
 };
