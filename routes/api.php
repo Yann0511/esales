@@ -54,6 +54,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('panier-produits', PanierProduitController::class);
 
+        Route::apiResource('produits', 'ProduitController')->names('produits');
+
 
         /*Route::apiResource('users', 'UserController')->names('users');
 
