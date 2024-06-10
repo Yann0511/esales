@@ -57,14 +57,16 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::apiResource('produits', 'ProduitController')->names('produits');
 
 
-        /*Route::apiResource('users', 'UserController')->names('users');
-
-        Route::apiResource('permissions', 'PermissionController', ['only' => ['index']])->names('permissions');
+        Route::apiResource('users', 'UserController')->names('users');
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
             Route::get('/{id}/statut', 'UserController@statut')->middleware('permission:desactiver.un.user');
 
-        });*/
+        });
+
+        /*Route::apiResource('permissions', 'PermissionController', ['only' => ['index']])->names('permissions');
+
+        */
     });
 });
