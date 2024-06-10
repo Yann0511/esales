@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PanierProduitController;
@@ -45,6 +45,9 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('categories', 'CategorieController')->names('categories');
         Route::get('/categories/{id}', [CategorieController::class, 'show']);
+        
+
+Route::apiResource('commentaires', CommentaireController::class);
 
         Route::apiResource('commandes', 'CommandeController')->names('commandes');
 
