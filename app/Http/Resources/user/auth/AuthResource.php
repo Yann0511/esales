@@ -24,6 +24,7 @@ class AuthResource extends JsonResource
             "statut" => $this->statut,
             "email" => $this->email,
             "adresse" => $this->adresse,
+            "dernierConnexion" => $this->dernierConnexion,
             "role" => new RoleResource($this->role),
             "telephone" => $this->telephone,
             "created_at" => !$this->updated_at ? null : Carbon::parse($this->created_at)->translatedFormat('d/m/Y à H:i:s'),
