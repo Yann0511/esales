@@ -29,6 +29,7 @@ class User extends Authenticatable
         'email',
         'password',
         'statut',
+        'dernierConnexion'
     ];
 
     /**
@@ -82,5 +83,10 @@ class User extends Authenticatable
     public function wishLists()
     {
         return $this->hasMany(WishList::class, 'userId');
+    }
+
+    public function adresses()
+    {
+        return $this->hasMany(Adresse::class, 'userId');
     }
 }

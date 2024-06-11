@@ -26,6 +26,9 @@ class StoreCommandeRequest extends FormRequest
             'statut' => 'required|numeric|max:50',
             'auteurId' => 'required|exists:users,id',
             'livreurId' => 'nullable|exists:users,id',
+            'produits' => 'required|array',
+            'produits.*.id' => 'required|exists:produits,id',
+            'produits.*.quantite' => 'required|integer|min:1',
         ];
     }
 }

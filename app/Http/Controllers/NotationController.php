@@ -151,4 +151,51 @@ class NotationController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function getProductNotations($id)
+    {
+        try {
+            $notations = Notation::where('produitId', $id)->get();
+
+            return response()->json([
+                'statut' => 'success',
+                'message' => "",
+                'data' => NotationResource::collection($notations),
+                'statutCode' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => []
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    public function storeProductNotation(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $userId = auth()->id();
+
+            $notation = Notation::create([
+                'produitId' => $id,
+                'userId' => $userId,
+                'note' => $request->input('note'),
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'statut' => 'success',
+                'message' => "Notation créée",
+                'data' => new NotationResource($notation),
+                'statutCode' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => []
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -58,6 +58,9 @@ class AuthController extends Controller
 
             $data = ["access_token" => $user->createToken($this->hashID(8))->accessToken, 'expired_at' => now()->addHours(8), 'user' => $user];
 
+            $user->dernierConnexion = Date('Y-m-d H:i:s');
+            $user->save();
+
             $acteur = $user->prenoms . ' ' . $user->nom;
 
             $message = Str::ucfirst($acteur) . " s'est connecté(e).";

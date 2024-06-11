@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commande_produits', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('commandeId')->unsigned();
-            $table->bigInteger('produitId')->unsigned();
-            $table->integer('quantite')->default(1);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dateTime('dernierConnexion')->nullable();
         });
     }
 
@@ -25,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commande_produits');
+        //
     }
 };
