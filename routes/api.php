@@ -3,6 +3,7 @@ use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PanierProduitController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \OpenApi\Annotations as OA;
@@ -56,6 +57,7 @@ Route::apiResource('commentaires', CommentaireController::class);
         Route::apiResource('paniers', PanierController::class);
 
         Route::apiResource('panier-produits', PanierProduitController::class);
+        Route::apiResource('wishlists', WishListController::class)->names('wishlists');
 
 
         /*Route::apiResource('users', 'UserController')->names('users');
