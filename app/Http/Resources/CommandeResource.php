@@ -23,6 +23,13 @@ class CommandeResource extends JsonResource
             "statut" => $this->statut,
             "auteurId" => $this->auteurId,
             "livreurId" => $this->livreurId,
+            "produits" => $this->produits->map(function ($produit) {
+                return [
+                    "id" => $produit->id,
+                    "nom" => $produit->nom,
+                    "quantite" => $produit->pivot->quantite,
+                ];
+            }),
             "created_at" => !$this->created_at ? null : Carbon::parse($this->created_at)->translatedFormat('d/m/Y à H:i:s'),
             "updated_at" => !$this->updated_at ? null : Carbon::parse($this->updated_at)->translatedFormat('d/m/Y à H:i:s'),
         ];

@@ -1,8 +1,11 @@
 <?php
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\NotationController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PanierProduitController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \OpenApi\Annotations as OA;
@@ -42,6 +45,9 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         });
 
         Route::apiResource('roles', 'RoleController')->names('roles');
+        Route::post('/admin/role', [RoleController::class, 'store'])->name('admin.role.store');
+        Route::put('/admin/role/{id}', [RoleController::class, 'update'])->name('admin.role.update');
+        Route::delete('/admin/role/{id}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
 
         Route::apiResource('categories', 'CategorieController')->names('categories');
         Route::get('/categories/{id}', [CategorieController::class, 'show']);
@@ -50,10 +56,22 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 Route::apiResource('commentaires', CommentaireController::class);
 
         Route::apiResource('commandes', 'CommandeController')->names('commandes');
+        Route::get('/commande', [CommandeController::class, 'getUserCommandes'])->name('commandes.user.index');
+        Route::post('/commandes', [CommandeController::class, 'storeWithProducts'])->name('commandes.store');
+        Route::put('/commandes/annuler/{id}', [CommandeController::class, 'cancelUserCommande'])->name('commandes.user.cancel');
+        Route::put('/commandes/statut/{id}', [CommandeController::class, 'updateStatut'])->name('commandes.update.statut');
+        Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes.index');
 
         Route::apiResource('notations', 'NotationController')->names('notations');
+        Route::get('/produits/{id}/notation', [NotationController::class, 'getProductNotations']);
+        Route::post('/produits/{id}/notation', [NotationController::class, 'storeProductNotation']);
 
         Route::apiResource('paniers', PanierController::class);
+        Route::post('panier/ajouter', [PanierProduitController::class, 'ajouter'])->name('panier.ajouter');
+        Route::delete('panier/supprimer/{id}', [PanierProduitController::class, 'supprimer'])->name('panier.supprimer');
+        Route::put('panier/modifier_qte/{id}', [PanierProduitController::class, 'modifierQte'])->name('panier.modifier_qte');
+        Route::get('panier', [PanierController::class, 'listerProduits'])->name('panier.lister_produits');
+
 
         Route::apiResource('panier-produits', PanierProduitController::class);
 

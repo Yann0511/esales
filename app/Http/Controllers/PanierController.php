@@ -72,28 +72,28 @@ class PanierController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-{
-    try {
-        $panier = Panier::with('produits.produit')->find($id);
+    {
+        try {
+            $panier = Panier::with('produits.produit')->find($id);
 
-        if (!$panier) {
-            throw new Exception("Le panier avec l'ID {$id} est introuvable.", Response::HTTP_NOT_FOUND);
+            if (!$panier) {
+                throw new Exception("Le panier avec l'ID {$id} est introuvable.", Response::HTTP_NOT_FOUND);
+            }
+
+            return response()->json([
+                'statut' => 'success',
+                'message' => "",
+                'data' => new PanierResource($panier),
+                'statutCode' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => []
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
-        return response()->json([
-            'statut' => 'success',
-            'message' => "",
-            'data' => new PanierResource($panier),
-            'statutCode' => Response::HTTP_OK
-        ], Response::HTTP_OK);
-    } catch (\Throwable $th) {
-        return response()->json([
-            'statut' => 'error',
-            'message' => $th->getMessage(),
-            'errors' => []
-        ], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
-}
 
 
     /**
@@ -154,6 +154,30 @@ class PanierController extends Controller
                 'statut' => 'error',
                 'message' => $th->getMessage(),
                 'errors' => [],
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    public function listerProduits(Request $request)
+    {
+        try {
+            $userId = $request->user()->id;
+            $panier = Panier::with('produits.produit')->where('userId', $userId)->first();
+
+            if (!$panier) {
+                throw new Exception("Aucun panier trouvé pour cet utilisateur.", Response::HTTP_NOT_FOUND);
+            }
+
+            return response()->json([
+                'statut' => 'success',
+                'message' => "",
+                'data' => new PanierResource($panier),
+                'statutCode' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => []
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

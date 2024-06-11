@@ -139,4 +139,100 @@ class PanierProduitController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function ajouter(Request $request)
+    {
+        $request->validate([
+            'produitId' => 'required|exists:produits,id',
+            'quantite' => 'integer|min:1|nullable',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $userId = auth()->user()->id;
+            $panier = Panier::where('userId', $userId)->first();
+
+            if (!$panier) {
+                throw new Exception("Panier introuvable pour l'utilisateur connecté.", Response::HTTP_NOT_FOUND);
+            }
+
+            $validated = $request->only(['produitId', 'quantite']);
+            $validated['quantite'] = $validated['quantite'] ?? 1;
+            $validated['panierId'] = $panier->id;
+
+            $panierProduit = PanierProduit::where('panierId', $validated['panierId'])
+                ->where('produitId', $validated['produitId'])
+                ->first();
+
+            if ($panierProduit) {
+                $panierProduit->quantite += $validated['quantite'];
+                $panierProduit->save();
+            } else {
+                $panierProduit = PanierProduit::create($validated);
+            }
+
+            DB::commit();
+            return response()->json([
+                'statut' => 'success',
+                'message' => "Produit ajouté au panier",
+                'data' => new PanierProduitResource($panierProduit),
+                'statutCode' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => []
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function supprimer($id)
+    {
+        return $this->destroy($id);
+    }
+
+    public function modifierQte(Request $request, $id)
+    {
+        $request->validate([
+            'quantite' => 'required|integer|min:0',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $panierProduit = PanierProduit::find($id);
+
+            if (!$panierProduit) {
+                throw new Exception("Le produit dans le panier avec l'ID {$id} est introuvable.", Response::HTTP_NOT_FOUND);
+            }
+
+            if ($request->input('quantite') == 0) {
+                $this->destroy($id);
+                DB::commit();
+                return response()->json([
+                    'statut' => 'success',
+                    'message' => "Produit retiré du panier car la quantité est 0",
+                    'data' => null,
+                    'statutCode' => Response::HTTP_OK
+                ], Response::HTTP_OK);
+            } else {
+                $panierProduit->update($request->only('quantite'));
+                DB::commit();
+                return response()->json([
+                    'statut' => 'success',
+                    'message' => "Quantité du produit dans le panier mise à jour",
+                    'data' => new PanierProduitResource($panierProduit),
+                    'statutCode' => Response::HTTP_OK
+                ], Response::HTTP_OK);
+            }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'statut' => 'error',
+                'message' => $th->getMessage(),
+                'errors' => []
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }

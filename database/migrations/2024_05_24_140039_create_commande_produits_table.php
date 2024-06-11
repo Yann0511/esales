@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('commandeId')->unsigned();
             $table->bigInteger('produitId')->unsigned();
+            $table->integer('quantite')->default(1);
             $table->timestamps();
         });
     }

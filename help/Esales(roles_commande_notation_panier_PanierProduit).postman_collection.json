@@ -170,7 +170,7 @@
 					"response": []
 				},
 				{
-					"name": "creer role",
+					"name": "creer role(role)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -218,7 +218,7 @@
 					"response": []
 				},
 				{
-					"name": "modifier role",
+					"name": "modifier role(admin)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -267,7 +267,7 @@
 					"response": []
 				},
 				{
-					"name": "supprimer role",
+					"name": "supprimer role(admin)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -317,7 +317,7 @@
 			"name": "commande",
 			"item": [
 				{
-					"name": "liste commandes",
+					"name": "liste commandes(Admin)",
 					"request": {
 						"method": "GET",
 						"header": []
@@ -462,6 +462,117 @@
 							"path": [
 								"api",
 								"commandes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "liste commande (user)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "modifier statut(admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTUxNThkMjNjNzhhODMyMjRjYzg1MDFjY2I5OTQ0NTI4OTU0MGFkZWM1ZjkxMGZjMzA2YzdjYzg2NWJlYmEyMGMyMGY1NTBiZmQ2Zjc0Y2IiLCJpYXQiOjE3MTgxMDUwNjEuODczNjAxLCJuYmYiOjE3MTgxMDUwNjEuODczNjA4LCJleHAiOjE3NDk2NDEwNjEuODU4NTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.s4deGKb57ngz1dIlj8ciRLUUvu_5qbEYROFsPj7RfX_I2FyKzGO1SgGQRuDJyrOkxJkI7kJ4DhVzU3W9jYldwyquhjlnvFwvjUApL95XfKR_1iRqhB6Zc_dzKn9kXuuwmhn7k0bGu3KJ2JDU0KDsCYpA2iBmNeJXa1Xgntr6jzBcC3dCt-ZLG0zEzzR1AijZ9qnwS4nGrHfwlI_m1e4O1yQDsTfj0W8stTy7gyeFaEG90SAyqy-UlUcLxaJ-vJ1GXMtXqk_dsAuJ-lpQRIH1iv3N8MwJun5tUA24UJFYVM8bEi2hi6M1ZD8a7_27damh69L9fwgkD2Iw6MpY92OGxA_XDcCl7Mo-YPq0dxwnabt_XYcmp247J5vIXQKeXUAzTi75UrO9pZTPATzCFbVw2L6SWDT6rkF98i4MPT1uduc8KcS43GV3T4dvK6dS-d3vDhsbT2ZoibJQu77FO1gckHS5EQm_0SMqFoR_DnGoT_YnU_zDf6CN_ZwQx-okUGGHP7o2xG7k_OH3wa6a9sjIxS15N_wo_FhTzfoD0yRxz2wEdhcwQkn-edd13z9NxqFH33cNEk_rhOC4bTTV-05N9ia8WurSewPxIw9Tp2D36TkGuY9V4jh5pVwZSmm2Mgw80-Rb0Cd6olwwv21B37OycqIkl7kUveG2pqUE8z5tuNA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"statut\":0\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/commandes/statut/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"commandes",
+								"statut",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "annuler commande(user)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTUxNThkMjNjNzhhODMyMjRjYzg1MDFjY2I5OTQ0NTI4OTU0MGFkZWM1ZjkxMGZjMzA2YzdjYzg2NWJlYmEyMGMyMGY1NTBiZmQ2Zjc0Y2IiLCJpYXQiOjE3MTgxMDUwNjEuODczNjAxLCJuYmYiOjE3MTgxMDUwNjEuODczNjA4LCJleHAiOjE3NDk2NDEwNjEuODU4NTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.s4deGKb57ngz1dIlj8ciRLUUvu_5qbEYROFsPj7RfX_I2FyKzGO1SgGQRuDJyrOkxJkI7kJ4DhVzU3W9jYldwyquhjlnvFwvjUApL95XfKR_1iRqhB6Zc_dzKn9kXuuwmhn7k0bGu3KJ2JDU0KDsCYpA2iBmNeJXa1Xgntr6jzBcC3dCt-ZLG0zEzzR1AijZ9qnwS4nGrHfwlI_m1e4O1yQDsTfj0W8stTy7gyeFaEG90SAyqy-UlUcLxaJ-vJ1GXMtXqk_dsAuJ-lpQRIH1iv3N8MwJun5tUA24UJFYVM8bEi2hi6M1ZD8a7_27damh69L9fwgkD2Iw6MpY92OGxA_XDcCl7Mo-YPq0dxwnabt_XYcmp247J5vIXQKeXUAzTi75UrO9pZTPATzCFbVw2L6SWDT6rkF98i4MPT1uduc8KcS43GV3T4dvK6dS-d3vDhsbT2ZoibJQu77FO1gckHS5EQm_0SMqFoR_DnGoT_YnU_zDf6CN_ZwQx-okUGGHP7o2xG7k_OH3wa6a9sjIxS15N_wo_FhTzfoD0yRxz2wEdhcwQkn-edd13z9NxqFH33cNEk_rhOC4bTTV-05N9ia8WurSewPxIw9Tp2D36TkGuY9V4jh5pVwZSmm2Mgw80-Rb0Cd6olwwv21B37OycqIkl7kUveG2pqUE8z5tuNA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/commandes/statut/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"commandes",
+								"statut",
 								"2"
 							]
 						}
@@ -628,6 +739,64 @@
 								"1"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "notation (user)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTUxNThkMjNjNzhhODMyMjRjYzg1MDFjY2I5OTQ0NTI4OTU0MGFkZWM1ZjkxMGZjMzA2YzdjYzg2NWJlYmEyMGMyMGY1NTBiZmQ2Zjc0Y2IiLCJpYXQiOjE3MTgxMDUwNjEuODczNjAxLCJuYmYiOjE3MTgxMDUwNjEuODczNjA4LCJleHAiOjE3NDk2NDEwNjEuODU4NTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.s4deGKb57ngz1dIlj8ciRLUUvu_5qbEYROFsPj7RfX_I2FyKzGO1SgGQRuDJyrOkxJkI7kJ4DhVzU3W9jYldwyquhjlnvFwvjUApL95XfKR_1iRqhB6Zc_dzKn9kXuuwmhn7k0bGu3KJ2JDU0KDsCYpA2iBmNeJXa1Xgntr6jzBcC3dCt-ZLG0zEzzR1AijZ9qnwS4nGrHfwlI_m1e4O1yQDsTfj0W8stTy7gyeFaEG90SAyqy-UlUcLxaJ-vJ1GXMtXqk_dsAuJ-lpQRIH1iv3N8MwJun5tUA24UJFYVM8bEi2hi6M1ZD8a7_27damh69L9fwgkD2Iw6MpY92OGxA_XDcCl7Mo-YPq0dxwnabt_XYcmp247J5vIXQKeXUAzTi75UrO9pZTPATzCFbVw2L6SWDT6rkF98i4MPT1uduc8KcS43GV3T4dvK6dS-d3vDhsbT2ZoibJQu77FO1gckHS5EQm_0SMqFoR_DnGoT_YnU_zDf6CN_ZwQx-okUGGHP7o2xG7k_OH3wa6a9sjIxS15N_wo_FhTzfoD0yRxz2wEdhcwQkn-edd13z9NxqFH33cNEk_rhOC4bTTV-05N9ia8WurSewPxIw9Tp2D36TkGuY9V4jh5pVwZSmm2Mgw80-Rb0Cd6olwwv21B37OycqIkl7kUveG2pqUE8z5tuNA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"note\":1\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/produits/1/notation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"produits",
+								"1",
+								"notation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vue note(user)",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -826,6 +995,195 @@
 								"api",
 								"paniers",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ajouter au panier (user)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODc5YTdlZjM2ZWI0ODIwNTNjZTJlYzkyZDhkNzFhMTA2NjlkNzE2ZGQ5MWJiMDI3YjZiODUwOGFmMWY5MWQ0ZDJjNTFiZTQwZjg4NzUwMDAiLCJpYXQiOjE3MTgxMDAyMzAuMTA1MDM1LCJuYmYiOjE3MTgxMDAyMzAuMTA1MDQzLCJleHAiOjE3NDk2MzYyMzAuMDY3MjQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.CTbtYav8EpQtRv73QMmWeG5MsLvaQ9GXDbGAFtvGY9wl3Xbw1Rv3JqgJVSbftj3QtPwZhLmERdO_gPokL_OM9K4tEb8bQIcoLXZuzyYTGlFo5S4zI4aDuEd1qPpa3MNUcaJjeOpH9Uwj9j6-sZwTuoLBI4_MnaSZRGTVOz9Z6Wrwe0wQMoYpUKiRo6r-k5_DvgnFkbPnxPHfUAEw2TvaGseGxzy030RBgs2I04pWRjs027yCmoaCfbrloS6Wh2ZlgRa1LeA_wKDXrwl0XMIgpkLOOj1fZ3DKj7OlhYTopyDjhwBscdu_9n8qKjCIMVDhVLSmX3uWcciGEy0gFjof_NXnYbFJqI7g_vF-7PVlOi0AnGN9v3wVLkkr90tTeH2cgmpcrVArrChYA8O_2lf4RAQsIhZRUEQ61gr5grdqO0SsbA8BdsWZ2h4HvyjNhzyRf0E2DBoYbeeV1DXHMKw6aAeDaLS-puk3Pi5ydfLuwBWeITpRSxVzmFX7i-p3B5InIyp-LboC1bR65w9bG3T23JmrcfJpIZRPeVqNm5aTalZgYbioUDzsSyvVqqDaqPHptgARWthf0fby4Yy9A5oz3L1IAO7xNALqDJ2z9NXeeNPvvINGi4R4Vw0XBQ8g1RGtA1LklQCiEGo56Ma8W3kHqKEzr0YFfQfryzkR0C6sfWc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"produitId\": 1,\r\n  \"quantite\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/panier/ajouter",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"panier",
+								"ajouter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifier la quantiter(user)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODc5YTdlZjM2ZWI0ODIwNTNjZTJlYzkyZDhkNzFhMTA2NjlkNzE2ZGQ5MWJiMDI3YjZiODUwOGFmMWY5MWQ0ZDJjNTFiZTQwZjg4NzUwMDAiLCJpYXQiOjE3MTgxMDAyMzAuMTA1MDM1LCJuYmYiOjE3MTgxMDAyMzAuMTA1MDQzLCJleHAiOjE3NDk2MzYyMzAuMDY3MjQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.CTbtYav8EpQtRv73QMmWeG5MsLvaQ9GXDbGAFtvGY9wl3Xbw1Rv3JqgJVSbftj3QtPwZhLmERdO_gPokL_OM9K4tEb8bQIcoLXZuzyYTGlFo5S4zI4aDuEd1qPpa3MNUcaJjeOpH9Uwj9j6-sZwTuoLBI4_MnaSZRGTVOz9Z6Wrwe0wQMoYpUKiRo6r-k5_DvgnFkbPnxPHfUAEw2TvaGseGxzy030RBgs2I04pWRjs027yCmoaCfbrloS6Wh2ZlgRa1LeA_wKDXrwl0XMIgpkLOOj1fZ3DKj7OlhYTopyDjhwBscdu_9n8qKjCIMVDhVLSmX3uWcciGEy0gFjof_NXnYbFJqI7g_vF-7PVlOi0AnGN9v3wVLkkr90tTeH2cgmpcrVArrChYA8O_2lf4RAQsIhZRUEQ61gr5grdqO0SsbA8BdsWZ2h4HvyjNhzyRf0E2DBoYbeeV1DXHMKw6aAeDaLS-puk3Pi5ydfLuwBWeITpRSxVzmFX7i-p3B5InIyp-LboC1bR65w9bG3T23JmrcfJpIZRPeVqNm5aTalZgYbioUDzsSyvVqqDaqPHptgARWthf0fby4Yy9A5oz3L1IAO7xNALqDJ2z9NXeeNPvvINGi4R4Vw0XBQ8g1RGtA1LklQCiEGo56Ma8W3kHqKEzr0YFfQfryzkR0C6sfWc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quantite\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/panier/modifier_qte/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"panier",
+								"modifier_qte",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer(user)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODc5YTdlZjM2ZWI0ODIwNTNjZTJlYzkyZDhkNzFhMTA2NjlkNzE2ZGQ5MWJiMDI3YjZiODUwOGFmMWY5MWQ0ZDJjNTFiZTQwZjg4NzUwMDAiLCJpYXQiOjE3MTgxMDAyMzAuMTA1MDM1LCJuYmYiOjE3MTgxMDAyMzAuMTA1MDQzLCJleHAiOjE3NDk2MzYyMzAuMDY3MjQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.CTbtYav8EpQtRv73QMmWeG5MsLvaQ9GXDbGAFtvGY9wl3Xbw1Rv3JqgJVSbftj3QtPwZhLmERdO_gPokL_OM9K4tEb8bQIcoLXZuzyYTGlFo5S4zI4aDuEd1qPpa3MNUcaJjeOpH9Uwj9j6-sZwTuoLBI4_MnaSZRGTVOz9Z6Wrwe0wQMoYpUKiRo6r-k5_DvgnFkbPnxPHfUAEw2TvaGseGxzy030RBgs2I04pWRjs027yCmoaCfbrloS6Wh2ZlgRa1LeA_wKDXrwl0XMIgpkLOOj1fZ3DKj7OlhYTopyDjhwBscdu_9n8qKjCIMVDhVLSmX3uWcciGEy0gFjof_NXnYbFJqI7g_vF-7PVlOi0AnGN9v3wVLkkr90tTeH2cgmpcrVArrChYA8O_2lf4RAQsIhZRUEQ61gr5grdqO0SsbA8BdsWZ2h4HvyjNhzyRf0E2DBoYbeeV1DXHMKw6aAeDaLS-puk3Pi5ydfLuwBWeITpRSxVzmFX7i-p3B5InIyp-LboC1bR65w9bG3T23JmrcfJpIZRPeVqNm5aTalZgYbioUDzsSyvVqqDaqPHptgARWthf0fby4Yy9A5oz3L1IAO7xNALqDJ2z9NXeeNPvvINGi4R4Vw0XBQ8g1RGtA1LklQCiEGo56Ma8W3kHqKEzr0YFfQfryzkR0C6sfWc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/panier/supprimer/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"panier",
+								"supprimer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "affiche panier (user)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODc5YTdlZjM2ZWI0ODIwNTNjZTJlYzkyZDhkNzFhMTA2NjlkNzE2ZGQ5MWJiMDI3YjZiODUwOGFmMWY5MWQ0ZDJjNTFiZTQwZjg4NzUwMDAiLCJpYXQiOjE3MTgxMDAyMzAuMTA1MDM1LCJuYmYiOjE3MTgxMDAyMzAuMTA1MDQzLCJleHAiOjE3NDk2MzYyMzAuMDY3MjQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.CTbtYav8EpQtRv73QMmWeG5MsLvaQ9GXDbGAFtvGY9wl3Xbw1Rv3JqgJVSbftj3QtPwZhLmERdO_gPokL_OM9K4tEb8bQIcoLXZuzyYTGlFo5S4zI4aDuEd1qPpa3MNUcaJjeOpH9Uwj9j6-sZwTuoLBI4_MnaSZRGTVOz9Z6Wrwe0wQMoYpUKiRo6r-k5_DvgnFkbPnxPHfUAEw2TvaGseGxzy030RBgs2I04pWRjs027yCmoaCfbrloS6Wh2ZlgRa1LeA_wKDXrwl0XMIgpkLOOj1fZ3DKj7OlhYTopyDjhwBscdu_9n8qKjCIMVDhVLSmX3uWcciGEy0gFjof_NXnYbFJqI7g_vF-7PVlOi0AnGN9v3wVLkkr90tTeH2cgmpcrVArrChYA8O_2lf4RAQsIhZRUEQ61gr5grdqO0SsbA8BdsWZ2h4HvyjNhzyRf0E2DBoYbeeV1DXHMKw6aAeDaLS-puk3Pi5ydfLuwBWeITpRSxVzmFX7i-p3B5InIyp-LboC1bR65w9bG3T23JmrcfJpIZRPeVqNm5aTalZgYbioUDzsSyvVqqDaqPHptgARWthf0fby4Yy9A5oz3L1IAO7xNALqDJ2z9NXeeNPvvINGi4R4Vw0XBQ8g1RGtA1LklQCiEGo56Ma8W3kHqKEzr0YFfQfryzkR0C6sfWc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/panier",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"panier"
 							]
 						}
 					},
