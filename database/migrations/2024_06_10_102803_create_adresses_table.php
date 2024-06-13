@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('adresse');
             $table->string('complement')->nillable();
-            $table->bigInteger('userId')->unsigned();
+            // $table->bigInteger('userId')->unsigned();
             $table->bigInteger('userId')->unsigned();
             $table->foreign('userId')->references('id')->on('users')
                 ->onUpdate('cascade')

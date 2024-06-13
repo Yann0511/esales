@@ -20,6 +20,7 @@ class ProduitResource extends JsonResource
             'description' => $this->description,
             'prix' => $this->prix,
             'qte' => $this->qte,
+            'note' => $this->note(),
             'categorie' => new CategorieResource($this->categorie),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

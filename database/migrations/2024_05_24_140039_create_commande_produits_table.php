@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('commande_produits', function (Blueprint $table) {
             $table->id();
-            $table->integer('qte')->default(1);
             $table->bigInteger('commandeId')->unsigned();
             $table->bigInteger('produitId')->unsigned();
+            $table->integer('quantite')->default(1);
             $table->timestamps();
         });
     }

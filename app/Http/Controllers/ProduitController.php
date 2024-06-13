@@ -222,7 +222,7 @@ class ProduitController extends Controller
             // Récupérer les 20 produits les plus vendus
             $trendingProducts = Produit::withCount([
                 'commandes as total_sales' => function ($query) {
-                    $query->select(DB::raw('SUM(commade_produits.qte)'));
+                    $query->select(DB::raw('SUM(commade_produits.quantite)'));
                 }
             ])
                 ->orderBy('total_sales', 'desc')
@@ -281,4 +281,5 @@ class ProduitController extends Controller
         }
 
     }
+
 }
