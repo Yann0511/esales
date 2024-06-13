@@ -184,4 +184,39 @@ class UserController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function statut(string $id)
+    {
+        try {
+            $User = User::find($id);
+
+            if (!$User) {
+                throw new Exception("Le User avec l'ID {$id} est introuvable.", Response::HTTP_NOT_FOUND);
+            }
+
+            $User->statut = $User->statut ? 0 : 1 ;
+            $User->save();
+
+            return response()->json(
+                [
+                    'statut' => 'success',
+                    'message' => "",
+                    'data' => new AuthResource($User),
+                    'statutCode' => Response::HTTP_OK
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(
+                [
+                    'statut' => 'error',
+                    'message' => $th->getMessage(),
+                    'errors' => []
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
 }
