@@ -52,7 +52,6 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::get('/populaires', 'ProduitController@populaires');
 
         Route::get('/populaires', 'ProduitController@populaires');
-
     });
 
     Route::group(['middleware' => ['auth:api']], function () {
@@ -90,7 +89,7 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::get('panier', [PanierController::class, 'listerProduits'])->name('panier.lister_produits');
 
 
-        Route::apiResource('panier-produits', PanierProduitController::class);
+        Route::apiResource('panier-produits', PanierProduitController::class)->except('show');
 
         Route::apiResource('produits', 'ProduitController')->except('show')->names('produits');
 
