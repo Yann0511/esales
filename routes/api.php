@@ -39,6 +39,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
     Route::post('/login', 'AuthController@login')->name('auth.login');
 
+    Route::apiResource('contacts', 'ContactController')->only('store')->names('contacts');
+
     Route::apiResource('produits', 'ProduitController')->only('show')->names('produits');
 
     Route::group(['prefix' => 'produits', 'as' => 'produits.'], function () {
@@ -50,7 +52,6 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::get('/populaires', 'ProduitController@populaires');
 
         Route::get('/populaires', 'ProduitController@populaires');
-
 
     });
 
@@ -92,6 +93,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::apiResource('panier-produits', PanierProduitController::class);
 
         Route::apiResource('produits', 'ProduitController')->except('show')->names('produits');
+
+        Route::apiResource('produits', 'ProduitController')->except(['sotre', 'update'])->names('produits');
 
         Route::apiResource('wishlists', WishListController::class)->names('wishlists');
 
