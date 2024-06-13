@@ -34,11 +34,15 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
     Route::post('/login', 'AuthController@login')->name('auth.login');
 
+    Route::apiResource('produits', 'ProduitController')->only('show')->names('produits');
+
     Route::group(['prefix' => 'produits', 'as' => 'produits.'], function () {
 
         Route::get('/nouveaux', 'ProduitController@nouveaux');
 
         Route::get('/tendances', 'ProduitController@tendances');
+
+        Route::get('/populaires', 'ProduitController@populaires');
 
     });
 
@@ -65,7 +69,7 @@ Route::apiResource('commentaires', CommentaireController::class);
 
         Route::apiResource('panier-produits', PanierProduitController::class);
 
-        Route::apiResource('produits', 'ProduitController')->names('produits');
+        Route::apiResource('produits', 'ProduitController')->except('show')->names('produits');
 
         Route::apiResource('users', 'UserController')->names('users');
 

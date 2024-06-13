@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('description');
             $table->float('prix');
             $table->integer('qte');
+            $table->integer("nbreVue")->default(0);
             $table->bigInteger('categorieId')->unsigned();
             $table->timestamps();
         });

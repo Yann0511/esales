@@ -6,6 +6,7 @@ use App\Models\Produit;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
 use App\Http\Resources\ProduitResource;
+use Auth;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Http\Response;
@@ -95,6 +96,12 @@ class ProduitController extends Controller
             if (!$Produit) {
                 throw new Exception("Le produit avec l'ID {$id} est introuvable.", Response::HTTP_NOT_FOUND);
             }
+            $user = Auth::user();
+            if(!$user || $user->role->slug == 'client'){
+                $Produit->nbreVue++;
+                $Produit->save();
+            }
+
 
             return response()->json(
                 [
@@ -208,7 +215,6 @@ class ProduitController extends Controller
         }
 
     }
-
     public function tendances()
     {
         try {
@@ -228,6 +234,36 @@ class ProduitController extends Controller
                     'statut' => 'success',
                     'message' => "",
                     'data' => ProduitResource::collection($trendingProducts),
+                    'statutCode' => Response::HTTP_OK
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(
+                [
+                    'statut' => 'error',
+                    'message' => $th->getMessage(),
+                    'errors' => []
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+    }
+
+    public function populaires()
+    {
+        try {
+
+            $popularProducts = Produit::orderBy('nbreVue', 'desc')->take(20)->get();
+
+
+            return response()->json(
+                [
+                    'statut' => 'success',
+                    'message' => "",
+                    'data' => ProduitResource::collection($popularProducts),
                     'statutCode' => Response::HTTP_OK
                 ],
                 Response::HTTP_OK

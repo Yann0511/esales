@@ -14,6 +14,7 @@ class Produit extends Model
         'description',
         'prix',
         'qte',
+        'nbreVue',
         'categorieId',
 
     ];
