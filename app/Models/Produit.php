@@ -40,4 +40,9 @@ class Produit extends Model
         return $this->morphMany(Photo::class,'photoable');
     }
 
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class, "commande_produits", "produitId", "commandeId")->withPivot('qte');
+    }
+
 }

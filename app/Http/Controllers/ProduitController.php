@@ -208,4 +208,41 @@ class ProduitController extends Controller
         }
 
     }
+
+    public function tendances()
+    {
+        try {
+
+            // Récupérer les 20 produits les plus vendus
+            $trendingProducts = Produit::withCount([
+                'commandes as total_sales' => function ($query) {
+                    $query->select(DB::raw('SUM(commade_produits.qte)'));
+                }
+            ])
+                ->orderBy('total_sales', 'desc')
+                ->take(20)
+                ->get();
+
+            return response()->json(
+                [
+                    'statut' => 'success',
+                    'message' => "",
+                    'data' => ProduitResource::collection($trendingProducts),
+                    'statutCode' => Response::HTTP_OK
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(
+                [
+                    'statut' => 'error',
+                    'message' => $th->getMessage(),
+                    'errors' => []
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+    }
 }

@@ -38,6 +38,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::get('/nouveaux', 'ProduitController@nouveaux');
 
+        Route::get('/tendances', 'ProduitController@tendances');
+
     });
 
     Route::group(['middleware' => ['auth:api']], function () {
