@@ -34,6 +34,12 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
     Route::post('/login', 'AuthController@login')->name('auth.login');
 
+    Route::group(['prefix' => 'produits', 'as' => 'produits.'], function () {
+
+        Route::get('/nouveaux', 'ProduitController@nouveaux');
+
+    });
+
     Route::group(['middleware' => ['auth:api']], function () {
 
         Route::group(['prefix' => 'authentificate', 'as' => 'auth.'], function () {
@@ -45,7 +51,7 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
 
         Route::apiResource('categories', 'CategorieController')->names('categories');
         Route::get('/categories/{id}', [CategorieController::class, 'show']);
-        
+
 
 Route::apiResource('commentaires', CommentaireController::class);
 
@@ -58,7 +64,6 @@ Route::apiResource('commentaires', CommentaireController::class);
         Route::apiResource('panier-produits', PanierProduitController::class);
 
         Route::apiResource('produits', 'ProduitController')->names('produits');
-
 
         Route::apiResource('users', 'UserController')->names('users');
 

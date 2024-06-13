@@ -179,4 +179,33 @@ class ProduitController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function nouveaux()
+    {
+        try {
+
+            $newProduits = Produit::latest('created_at')->take(20)->get();
+
+            return response()->json(
+                [
+                    'statut' => 'success',
+                    'message' => "",
+                    'data' => ProduitResource::collection($newProduits),
+                    'statutCode' => Response::HTTP_OK
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(
+                [
+                    'statut' => 'error',
+                    'message' => $th->getMessage(),
+                    'errors' => []
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+    }
 }
