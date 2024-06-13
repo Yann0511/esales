@@ -6,6 +6,7 @@ use App\Models\Notation;
 use App\Http\Requests\StoreNotationRequest;
 use App\Http\Requests\UpdateNotationRequest;
 use App\Http\Resources\NotationResource;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Http\Response;
@@ -176,16 +177,29 @@ class NotationController extends Controller
         try {
             $userId = auth()->id();
 
-            $notation = Notation::create([
-                'produitId' => $id,
-                'userId' => $userId,
-                'note' => $request->input('note'),
-            ]);
+            // Vérifier si une notation existe déjà pour ce produit et cet utilisateur
+            $notation = Notation::where('produitId', $id)
+                ->where('userId', $userId)
+                ->first();
+
+            if ($notation) {
+                // Mettre à jour la notation existante
+                $notation->update([
+                    'note' => $request->input('note'),
+                ]);
+            } else {
+                // Créer une nouvelle notation
+                $notation = Notation::create([
+                    'produitId' => $id,
+                    'userId' => $userId,
+                    'note' => $request->input('note'),
+                ]);
+            }
 
             DB::commit();
             return response()->json([
                 'statut' => 'success',
-                'message' => "Notation créée",
+                'message' => "Notation mise à jour ou créée",
                 'data' => new NotationResource($notation),
                 'statutCode' => Response::HTTP_OK
             ], Response::HTTP_OK);
@@ -195,7 +209,7 @@ class NotationController extends Controller
                 'statut' => 'error',
                 'message' => $th->getMessage(),
                 'errors' => []
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ], $th->getCode() ?: Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

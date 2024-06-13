@@ -105,6 +105,7 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         });
 
         /*Route::apiResource('permissions', 'PermissionController', ['only' => ['index']])->names('permissions');
+
         */
     });
 });
