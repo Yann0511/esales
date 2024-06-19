@@ -16,6 +16,7 @@ use App\Traits\Helpers\IdTrait;
 use App\Traits\Helpers\LogActivity;
 use App\Http\Resources\user\auth\AuthResource;
 use App\Http\Resources\user\auth\LoginResource;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -178,6 +179,23 @@ class AuthController extends Controller
             return response()->json(['statut' => 'success', 'message' => "Vous êtes déconnecté", 'data' => [], 'statutCode' => Response::HTTP_OK], Response::HTTP_OK);
         } catch (\Throwable $th) {
             //throw $th;
+            return response()->json(['statut' => 'error', 'message' => $th->getMessage(), 'errors' => []], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    /**
+     * Obtenir le nombre total d'utilisateurs connectés.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function nombreSessions()
+    {
+        try {
+            $nombreSessions = DB::table('oauth_access_tokens')
+                ->where('revoked', false)
+                ->count();
+
+            return response()->json(['statut' => 'success', 'message' => 'Nombre total de sessions', 'data' => $nombreSessions, 'statutCode' => Response::HTTP_OK], Response::HTTP_OK);
+        } catch (\Throwable $th) {
             return response()->json(['statut' => 'error', 'message' => $th->getMessage(), 'errors' => []], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\NotationController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PanierProduitController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -98,6 +100,10 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::apiResource('wishlists', WishListController::class)->names('wishlists');
 
         Route::apiResource('users', 'UserController')->names('users');
+
+        Route::get('admin/nombre_sessions', [AuthController::class, 'nombreSessions'])->name('nombre_sessions');
+
+        Route::get('admin/nombre_visiteurs', [VisitorController::class, 'nombreVisiteurs'])->name('nombre_visiteurs');
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
