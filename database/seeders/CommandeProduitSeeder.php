@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\PanierProduit;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CommandeProduit;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
-
-class PanierProduitSeeder extends Seeder
+class CommandeProduitSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,14 +16,14 @@ class PanierProduitSeeder extends Seeder
         $faker = Faker::create();
         $combinationsExistantes = [];
 
-        for ($i = 0; $i < 30; $i++) {
-            $panierId = $faker->numberBetween(1, 3);
-            $produitId = $faker->numberBetween(1, 10);
-            $combinationKey = $panierId . '-' . $produitId;
+        for ($i = 0; $i < 10; $i++) {
+            $commandeId = $faker->numberBetween(1, 9);
+            $produitId = $faker->numberBetween(1, 11);
+            $combinationKey = $commandeId . '-' . $produitId;
 
             if (!in_array($combinationKey, $combinationsExistantes)) {
-                PanierProduit::create([
-                    'panierId' => $panierId,
+                CommandeProduit::create([
+                    'commandeId' => $commandeId,
                     'produitId' => $produitId,
                     'quantite' => $faker->numberBetween(1, 2),
                 ]);

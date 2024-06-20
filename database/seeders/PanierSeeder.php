@@ -17,5 +17,13 @@ class PanierSeeder extends Seeder
             'userId' => 1,
 
         ]);
+        Panier::create([
+            'userId' => 2,
+
+        ])
+        ;Panier::create([
+            'userId' => 3,
+
+        ]);
     }
 }

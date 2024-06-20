@@ -19,7 +19,15 @@ class PanierProduitResource extends JsonResource
             'panierId' => $this->panierId,
             'produitId' => $this->produitId,
             'quantite' => $this->quantite,
-            'produit' => new ProduitResource($this->whenLoaded('produit')),
+            "produits" => $this->when($this->produits !== null, function () {
+                return $this->produits->map(function ($produit) {
+                    return [
+                        "id" => $produit->id,
+                        "nom" => $produit->nom,
+                        "quantite" => $produit->pivot->quantite,
+                    ];
+                });
+            }),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

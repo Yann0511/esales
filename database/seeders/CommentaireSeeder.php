@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Notation;
+use App\Models\Commentaire;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
 
-class NotationSeeder extends Seeder
+class CommentaireSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class NotationSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        $notationsCreated = [];
+        $commentairesCreated = [];
 
         for ($i = 0; $i < 30; $i++) {
             $produitId = $faker->numberBetween(1, 10);
@@ -24,14 +24,14 @@ class NotationSeeder extends Seeder
             $combinationKey = $produitId . '-' . $userId;
 
             // Check if this combination has already been created
-            if (!isset($notationsCreated[$combinationKey])) {
-                Notation::create([
-                    'note' => $faker->numberBetween(1, 5),
+            if (!isset($commentairesCreated[$combinationKey])) {
+                Commentaire::create([
+                    'contenu' => $faker->sentence(),
                     'produitId' => $produitId,
                     'userId' => $userId,
                 ]);
                 // Mark this combination as created
-                $notationsCreated[$combinationKey] = true;
+                $commentairesCreated[$combinationKey] = true;
             }
         }
     }

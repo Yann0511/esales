@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Commande;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 
 class CommandeSeeder extends Seeder
 {
@@ -29,6 +31,19 @@ class CommandeSeeder extends Seeder
                 'auteurId' => 1, 
                 'livreurId' =>1, 
             ]);
+            $faker = Faker::create();
+
+        for ($i = 0; $i < 7; $i++) {
+            Commande::create([
+                'adresse' => $faker->address,
+                'numero' => $faker->phoneNumber,
+                'montant' => $faker->randomFloat(2, 20, 500),
+                'statut' => 1,
+                'auteurId' => $faker->numberBetween(1, 3),
+                'livreurId' => $faker->numberBetween(1, 3), 
+            ]);
+        }
+            
         
     }
 }

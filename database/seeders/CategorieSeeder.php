@@ -20,7 +20,14 @@ class CategorieSeeder extends Seeder
         'nom' => 'Electronics', 'icone' => 'icon-electronics.png',
        
         // Ajoutez d'autres catégories ici si nécessaire
-    ]);
+        ]);
+        $categories = Categorie::create([  
+            'nom' => 'Vetement', 'icone' => 'icon-vetement.png',
+        ]);
+        $categories = Categorie::create([  
+            'nom' => 'Meuble', 'icone' => 'icon-meuble.png',
+        ]);
+
 
        
     }
