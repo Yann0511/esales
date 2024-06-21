@@ -36,7 +36,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\LogVisitor::class,
         ],
 
         'api' => [
@@ -46,7 +45,6 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Rakutentech\LaravelRequestDocs\LaravelRequestDocsMiddleware::class,
-            \App\Http\Middleware\LogVisitor::class,
         ],
     ];
 

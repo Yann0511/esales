@@ -104,6 +104,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::get('admin/nombre_sessions', [AuthController::class, 'nombreSessions'])->name('nombre_sessions');
 
         Route::get('admin/nombre_visiteurs', [VisitorController::class, 'nombreVisiteurs'])->name('nombre_visiteurs');
+        Route::post('admin/visiteurs', [VisitorController::class, 'ajouterAdresseIP']);
+        Route::get('admin/visiteurs/anneeCourante', [VisitorController::class, 'nombreVisiteursAnneeCourante']);
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 

@@ -1372,6 +1372,63 @@
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "ajouter visitor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNDI3MmIwZjc3YjhiOTk0NDk1ZWMyZjU2MmU3MzQ3MzQ1MzFmMDRhN2ZhYjdjN2ZiNmI2YTI5MWU2NWE0NTQ1OTY2OTdjZmJmZDY2YmM3ODgiLCJpYXQiOjE3MTg5NzEwOTguOTcyNDMyLCJuYmYiOjE3MTg5NzEwOTguOTcyNDM4LCJleHAiOjE3NTA1MDcwOTguOTUwNzU2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mM3n6dzVsvChxfhw43Bs1NNysF0EqK04b0JXGSLpHnxPmL4t80LMjANmhoQ9p6oZwKJOM0Dzdoaj2mjUdfhHW71dt5di1DvH2Cr8v4apYeMI_hdHM46NGDwOPiCu62M59YjpLrkOrAIB3XDE47JcJzMn6RN-0VIdZhtZWedCXEGnGuXfu8maCNZ-LKdYg7nQ_N1bYGzP7PIZBV-Hv5zKgU0EHo6ck8opedOqufVYaMKCc80K7mt-Ba-rUl4OYtBNKQpwM8pqHrW8p9_348gcU1HE__3iMbUsfUtZtcSPzOCu9GZcYcB1gzT6mgfzRsnWWs-Qi10gJXLE4oTfr_1S9fp_J4AgIbKv1dfAOsdEfPME0ZyO1IAgtnuLX64hAkGpi59kZNb_Mu2s18vhBK8E-H1Y368SuFyVDhRVFxc0GNASfnqmMXE7P2UkZJj3ZoGZCf1kVWmlVjcBczO736bWvrSn4T447N84aPWMAxqNTBmEvt9xZzQYQN5JoYpaY42ppbtAnzOHODgd2sWjoKTkKQtKzgUHls26CXYZ-mCDadVnzNqG2pD7DwmsTHT4KX35YlHAGhIVYdwOfX6fm5oNWpbcKFC4JmNBsd3i7GhUf9Rm2TvIEHl36v67UBPSsfOmiENQqmlNO2F0yxpzCALqUxH6FOJ5YQ9c4e_NYt6S0d0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ip_address\":\"128.1.34.2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/admin/visiteurs",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"admin",
+								"visiteurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "visitor par annee",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		}
