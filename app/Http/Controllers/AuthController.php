@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\auth\LoginRequest;
@@ -87,7 +88,7 @@ class AuthController extends Controller
             if (!$utilisateur) return response()->json(['statut' => 'success', 'message' => "Utilisateur non trouvé", 'data' => [], 'statutCode' => Response::HTTP_NOT_FOUND], Response::HTTP_NOT_FOUND);
 
             //Send verificiation email
-            //dispatch(new SendEmailJob($utilisateur, "reinitialisation-mot-de-passe"));
+            dispatch(new SendEmailJob($utilisateur, "reinitialisation-mot-de-passe"));
 
             // retourner une reponse avec les détails de l'utilisateur
             return response()->json(['statut' => 'success', 'message' => null, 'data' => new AuthResource($utilisateur), 'statutCode' => Response::HTTP_OK], Response::HTTP_OK);

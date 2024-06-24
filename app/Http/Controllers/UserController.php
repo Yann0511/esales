@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\user\auth\AuthResource;
+use App\Jobs\SendEmailJob;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -65,6 +66,9 @@ class UserController extends Controller
 
             $User = User::create($attributs);
             DB::commit();
+
+            dispatch(new SendEmailJob($User, "confirmation-compte", $password));
+
             return response()->json(
                 [
                     'statut' => 'success',
