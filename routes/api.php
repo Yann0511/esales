@@ -110,6 +110,8 @@ Route::group(['middleware' => ['cors', 'json.response'], 'as' => 'api.'], functi
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
             Route::get('/{id}/statut', 'UserController@statut')->middleware('permission:desactiver.un.user');
+
+            Route::post('/updatePassword', 'UserController@updatePassword');
         });
 
         /*Route::apiResource('permissions', 'PermissionController', ['only' => ['index']])->names('permissions');

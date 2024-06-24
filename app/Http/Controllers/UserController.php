@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\auth\UpdatePasswordRequest;
 use App\Http\Resources\user\auth\AuthResource;
 use App\Jobs\SendEmailJob;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -222,5 +224,34 @@ class UserController extends Controller
             );
         }
     }
+
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        try {
+
+            $attributs = $request->all();
+
+            // Rechercher l'utilisateur grâce à l'identifiant.
+            $utilisateur = Auth::user();
+
+            // S'assurer que le nouveau mot de passe est différent du mot de passe actuel
+            if ((Hash::check($attributs['new_password'], $utilisateur->password))) throw new Exception("Le nouveau mot de passe doit être différent de l'actuel mot de passe. Veuillez vérifier", 422);
+
+            // Hash le nouveau mot de passe
+            $password = Hash::make($attributs['new_password']); // Hash user registered password
+
+            // Enrégistrer la donnée
+            $utilisateur->password = $password;
+
+            // Sauvegarder les informations
+            $utilisateur->save();
+
+            return response()->json(['statut' => 'success', 'message' => 'Mot de passe réinitialisé', 'data' => [], 'statutCode' => Response::HTTP_OK], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['statut' => 'error', 'message' => $th->getMessage(), 'errors' => []], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }
